@@ -14,7 +14,17 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.4",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.11",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
