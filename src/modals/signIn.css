@@ -1,0 +1,10 @@
+#login-paper {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: column;
+}
+
+.signUp-buttons{
+  display: flex;
+  justify-content: space-between;
+}

@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -77,8 +77,9 @@ export default function SearchAppBar() {
           >
             MUI
           </Typography>
-          <Button variant="contained" style={{padding : 2, marginRight: 15}}>Login</Button>
-          <Button variant="contained" style={{padding : 2, marginRight: 15}}>Sign Up</Button>
+          {!props.user && <Button variant="contained" style={{padding : 2, marginRight: 15}} onClick={props.handleSignInOpen}>Sign In</Button>}
+          {!props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.SignUp}>Sign Up</Button>}
+          {props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.logout}>Sign Out</Button>}
           <Search onChange={(e) => console.log(e.target.value)}>
             <SearchIconWrapper>
               <SearchIcon />
