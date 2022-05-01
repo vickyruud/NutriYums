@@ -25,6 +25,7 @@
     "passport-jwt": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-google-login": "^5.2.2",
     "react-scripts": "5.0.1",
     "uuid": "^8.3.2",
     "validator": "^10.9.0",
