@@ -23,8 +23,8 @@ const SignIn = (props) => {
     }
    
 
-  const handleSubmit = (evt) => {
-    console.log('here');
+  const handleSubmit = (evt) => {    
+    
         evt.preventDefault()
         fetch(`http://localhost:5000/api/signin`, {
             method: "POST",
@@ -40,10 +40,9 @@ const SignIn = (props) => {
         .then(resp => resp.json())
           .then(data => {
           localStorage.setItem("token", data.token)
-          localStorage.setItem("user", data.message)
-            
-            
-          props.setUser(data.message)
+          localStorage.setItem("user", JSON.stringify(data.message))            
+            props.setUser(data.message)
+            props.setOpenModal(false)
         }).catch(error => { 
           console.log('login error', error.response.data.message);
         });

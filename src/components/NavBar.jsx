@@ -55,7 +55,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+
 export default function SearchAppBar(props) {
+
+  let user= props.user
+ 
+ 
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -75,7 +81,7 @@ export default function SearchAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            {user ? <p>Welcome {user.username}</p> : <p>Welcome</p>}
           </Typography>
           {!props.user && <Button variant="contained" style={{padding : 2, marginRight: 15}} onClick={props.handleSignInOpen}>Sign In</Button>}
           {!props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.SignUp}>Sign Up</Button>}

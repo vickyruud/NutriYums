@@ -18,12 +18,8 @@ export default function App() {
     localStorage.removeItem('user');
     setUser('')
 
-  } 
- 
+  }  
   
-  if (localStorage.getItem('token')) {
-    console.log('token is there')
-  }
   
  
 
@@ -42,22 +38,25 @@ export default function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      setUser(loggedInUser);
+      let foundUser = JSON.parse(loggedInUser)
+      setUser(foundUser);
     }
-  })
+  }, [])
 
   
-
   return (
     <div>
 
       {!user && <NavBar handleSignInOpen={setOpenModal} />}
       {user && <NavBar user={user} logout={logout} />}
 
+      <Modal open={openModal}>
+      <SignIn setUser={setUser} setOpenModal={setOpenModal} />
 
-      <SignIn setUser={setUser} />
-
-      <RecipeList recipes={recipes} />
+      </Modal>
+      {user && <RecipeList recipes={recipes} />}
+      {!user && <div>Please Signup or Login to view recipes</div>}
+      
     </div>
   )
 }
