@@ -11,7 +11,12 @@ export default function App() {
   const [recipes, setRecipes] = useState([]);
   const [user, setUser] = useState(null);
 
-  const [openModal, setOpenModal] = useState(false);
+  const [signInOpen, setSignInOpen] = useState(false);
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [completeSignUp, setCompleteSignUp] = useState(false);
+
+
+
 
   const logout =  () => {
     localStorage.removeItem('token');
@@ -38,9 +43,11 @@ export default function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
-    if (loggedInUser) {
+    if (loggedInUser != undefined) {
       let foundUser = JSON.parse(loggedInUser)
       setUser(foundUser);
+    } else {
+      setUser('')
     }
   }, [])
 
@@ -48,12 +55,14 @@ export default function App() {
   return (
     <div>
 
-      {!user && <NavBar handleSignInOpen={setOpenModal} />}
+      {!user && <NavBar handleSignInOpen={setSignInOpen} setOpenModal={setSignUpOpen} />}
       {user && <NavBar user={user} logout={logout} />}
 
-      <Modal open={openModal}>
-      <SignIn setUser={setUser} setOpenModal={setOpenModal} />
-
+      <Modal open={signInOpen}>
+      <SignIn completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignInOpen} />
+      </Modal>
+      <Modal open={signUpOpen}>
+        <SignUp  completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignUpOpen} setSignIn={setSignInOpen} />
       </Modal>
       {user && <RecipeList recipes={recipes} />}
       {!user && <div>Please Signup or Login to view recipes</div>}

@@ -13,6 +13,7 @@ const SignIn = (props) => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  console.log(props.completeSignUp);
 
     const handleEmailChange = (evt) => {
         setEmail(evt.target.value)
@@ -43,6 +44,7 @@ const SignIn = (props) => {
           localStorage.setItem("user", JSON.stringify(data.message))            
             props.setUser(data.message)
             props.setOpenModal(false)
+            props.setSignUp(false);
         }).catch(error => { 
           console.log('login error', error.response.data.message);
         });
@@ -58,16 +60,17 @@ const SignIn = (props) => {
       <Paper elevation={20} style = {paperStyle} id="login-paper">
         <Grid align='center'>
           <Avatar style={avatarStyle}>
-          <DinnerDiningIcon />
+            <DinnerDiningIcon />
           </Avatar>
+          {props.completeSignUp ? <p>Successfully Signed Up! Please login below</p> : null}
           <h2 style ={headerStyle}>Login</h2>
         </Grid>
         <form className='login-form' onSubmit={handleSubmit}>
           <TextField onChange={handleEmailChange} style={textFieldStyle} variant='standard' fullWidth label='Email' placeholder='Enter your email'/>
           <TextField onChange={handlePasswordChange} style={textFieldStyle} variant='standard' fullWidth label='Password' type="password" placeholder='Enter a password' />
-          <div className='signUp-buttons'>
+          <div className='signIn-buttons'>
           <Button style={loginButtonStyle} type='submit' variant='contained' color='primary'>Login</Button>
-          <Button  onClick={() => props.cancel()} style={loginButtonStyle} variant='contained' color='primary'>Cancel</Button>
+          <Button  onClick={() => props.setOpenModal(false)} style={loginButtonStyle} variant='contained' color='primary'>Cancel</Button>
           </div>
         </form>
       </Paper>

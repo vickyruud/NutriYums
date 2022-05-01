@@ -1,0 +1,18 @@
+#signup-paper {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: column;
+}
+
+#signup-submit-button {
+  margin-top: 10px;
+}
+
+#signup-cancel-button{
+  margin-top: 10px;
+}
+
+.signup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
