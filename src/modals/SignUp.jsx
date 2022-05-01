@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@mui/material';
 import './signUp.css'
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import GoogleLogin from 'react-google-login';
 
 
 function SignUp(props) {
@@ -75,8 +76,15 @@ function SignUp(props) {
           <DinnerDiningIcon />
           </Avatar>
           <h2 style ={headerStyle}>Sign Up</h2>
-          <Typography variant='caption'>Please fill this form to create an account</Typography>
+          <Typography variant='caption'>Please sign up below or Login with Google</Typography>
         </Grid>
+        <GoogleLogin
+            clientId="314086644675-a82vonng714fusuuotog2780t6plapo9.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={props.responseSuccessGoogle}
+            onFailure={props.responseErrorGoogle}
+            cookiePolicy={'single_host_origin'}
+            />
         <form className='signup-form' onSubmit={handleSubmit}>
           <TextField onChange={handleUsernameChange} style={textFieldStyle} variant='standard' fullWidth label='Username' placeholder='Enter your username' autoFocus/>
           <TextField onChange={handleEmailChange} style={textFieldStyle} variant='standard' fullWidth label='Email' placeholder='Enter your email'/>

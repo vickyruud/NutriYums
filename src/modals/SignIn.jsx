@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { Grid, Paper, Avatar, TextField, Button } from '@mui/material';
 import './signIn.css'
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import GoogleLogin from 'react-google-login';
 
 
 const SignIn = (props) => {
-  const paperStyle = { padding: '30px 20px', width: 300, margin: '20px auto' };
+  const paperStyle = { padding: '30px', width: 300, margin: '20px auto' };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: '#0068d3' };
   const textFieldStyle = { margin: '10px 0 0 0' };
-  const loginButtonStyle = {margin: '10px 0 0 0'}
+  const loginButtonStyle = {margin: '10px 0 0 0', padding: 5}
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  console.log(props.completeSignUp);
 
     const handleEmailChange = (evt) => {
         setEmail(evt.target.value)
@@ -65,6 +65,13 @@ const SignIn = (props) => {
           {props.completeSignUp ? <p>Successfully Signed Up! Please login below</p> : null}
           <h2 style ={headerStyle}>Login</h2>
         </Grid>
+         <GoogleLogin
+            clientId="314086644675-a82vonng714fusuuotog2780t6plapo9.apps.googleusercontent.com"
+            buttonText="Login with Google"
+            onSuccess={props.responseSuccessGoogle}
+            onFailure={props.responseErrorGoogle}
+            cookiePolicy={'single_host_origin'}
+            />
         <form className='login-form' onSubmit={handleSubmit}>
           <TextField onChange={handleEmailChange} style={textFieldStyle} variant='standard' fullWidth label='Email' placeholder='Enter your email'/>
           <TextField onChange={handlePasswordChange} style={textFieldStyle} variant='standard' fullWidth label='Password' type="password" placeholder='Enter a password' />
@@ -72,7 +79,7 @@ const SignIn = (props) => {
           <Button style={loginButtonStyle} type='submit' variant='contained' color='primary'>Login</Button>
           <Button  onClick={() => props.setOpenModal(false)} style={loginButtonStyle} variant='contained' color='primary'>Cancel</Button>
           </div>
-        </form>
+        </form>         
       </Paper>
     </Grid>
   )

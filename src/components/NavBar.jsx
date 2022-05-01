@@ -83,9 +83,9 @@ export default function SearchAppBar(props) {
           >
             {user ? <p>Welcome {user.username}</p> : <p>Welcome</p>}
           </Typography>
-          {!props.user && <Button variant="contained" style={{padding : 2, marginRight: 15}} onClick={props.handleSignInOpen}>Sign In</Button>}
+          {!props.user && <Button variant="contained" style={{padding : 2, marginRight: 15}} onClick={props.handleSignInOpen}>Login</Button>}
           {!props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.setOpenModal}>Sign Up</Button>}
-          {props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.logout}>Sign Out</Button>}
+          {props.user && <Button variant="contained" style={{ padding: 2, marginRight: 15 }} onClick={props.logout}>Logout</Button>}
           <Search onChange={(e) => console.log(e.target.value)}>
             <SearchIconWrapper>
               <SearchIcon />

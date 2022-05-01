@@ -5,7 +5,6 @@ import NavBar from './components/NavBar';
 import SignIn from './modals/SignIn';
 import SignUp from './modals/SignUp';
 import { Modal } from '@mui/material';
-import GoogleLogin from 'react-google-login';
 
 
 
@@ -66,11 +65,13 @@ export default function App() {
       localStorage.setItem("token", resp.data.token) 
       localStorage.setItem("user", JSON.stringify(resp.data.message)) 
       setUser(resp.data.message);
-      
+      setSignInOpen(false)
+      setSignUpOpen(false);
     })
   }
 
   const responseErrorGoogle = (response) => {
+    console.log('response');
     
   }
 
@@ -80,19 +81,12 @@ export default function App() {
 
       {!user && <NavBar handleSignInOpen={setSignInOpen} setOpenModal={setSignUpOpen} />}
       {user && <NavBar user={user} logout={logout} />}
-        <GoogleLogin
-          clientId="314086644675-a82vonng714fusuuotog2780t6plapo9.apps.googleusercontent.com"
-          buttonText="Login with Google"
-          onSuccess={responseSuccessGoogle}
-          onFailure={responseErrorGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-
+        
       <Modal open={signInOpen}>
-      <SignIn completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignInOpen} />
+      <SignIn responseSuccessGoogle={responseSuccessGoogle} responseErrorGoogle={responseErrorGoogle} completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignInOpen} />
       </Modal>
       <Modal open={signUpOpen}>
-        <SignUp  completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignUpOpen} setSignIn={setSignInOpen} />
+        <SignUp responseSuccessGoogle={responseSuccessGoogle} responseErrorGoogle={responseErrorGoogle}  completeSignUp={completeSignUp} setCompleteSignUp={setCompleteSignUp} setUser={setUser} setOpenModal={setSignUpOpen} setSignIn={setSignInOpen} />
       </Modal>
       {user && <RecipeList recipes={recipes} />}
       {!user && <div>Please Signup or Login to view recipes</div>}

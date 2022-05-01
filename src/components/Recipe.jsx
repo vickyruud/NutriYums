@@ -16,10 +16,10 @@ export default function Recipe(props) {
     image
   } = props.recipe
 
-
+  let cardHeight = readMore ? "auto" : 400
 
   return (
-    <Card sx={{ maxWidth: 345, height: "auto" }} elevation={20}>
+    <Card sx={{ maxWidth: 345, height: cardHeight }} elevation={20}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -32,7 +32,7 @@ export default function Recipe(props) {
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {readMore ? description : `${description.substring(0, 65)}...`}
+            {readMore ? description : `${description.substring(0, 40)}...`}
             <span
             style={{ background: "transparent", border: "none", fontWeight: 'bold', marginLeft: 5 }}
             onClick={() => setReadMore(!readMore)}
